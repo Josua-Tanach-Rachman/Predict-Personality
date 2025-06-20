@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Personality Predictor</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(120deg, #f0f4f8, #d9e4f5);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: white;
+            margin-top: 50px;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 25px;
+        }
+
+        label {
+            font-weight: 600;
+            margin-top: 15px;
+            display: block;
+            color: #444;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1em;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #007BFF;
+            border: none;
+            color: white;
+            font-size: 1em;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 25px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 1.1em;
+            font-weight: bold;
+            text-align: center;
+            color: #2d3436;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                margin: 20px;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>🧠 Predict Your Personality</h2>
+        <form method="post" action="/predict">
+            <label for="Time_spent_Alone">🕒 Time Spent Alone Daily(0–11)</label>
+            <input type="number" name="Time_spent_Alone" min="0" max="11" required>
+
+            <label for="Stage_fear">🎤 Stage Fear (Yes/No)</label>
+            <select name="Stage_fear">
+                <option>Yes</option>
+                <option>No</option>
+            </select>
+
+            <label for="Social_event_attendance">🎉 Social Event Attendance Monthly (0–10)</label>
+            <input type="number" name="Social_event_attendance" min="0" max="10" required>
+
+            <label for="Going_outside">🚶 Going Outside Weekly (0–7)</label>
+            <input type="number" name="Going_outside" min="0" max="7" required>
+
+            <label for="Drained_after_socializing">😩 Drained After Socializing (Yes/No)</label>
+            <select name="Drained_after_socializing">
+                <option>Yes</option>
+                <option>No</option>
+            </select>
+
+            <label for="Friends_circle_size">👥 Friends Circle Size (0–15)</label>
+            <input type="number" name="Friends_circle_size" min="0" max="15" required>
+
+            <label for="Post_frequency">📱 Post Frequency on Social Media Monthly (0–10)</label>
+            <input type="number" name="Post_frequency" min="0" max="10" required>
+
+            <button type="submit">🔮 Predict Personality</button>
+        </form>
+
+        {% if prediction_text %}
+            <div class="result">{{ prediction_text }}</div>
+        {% endif %}
+    </div>
+</body>
+</html>
